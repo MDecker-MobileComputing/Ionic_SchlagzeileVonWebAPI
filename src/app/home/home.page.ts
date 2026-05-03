@@ -17,8 +17,8 @@ interface SchlagzeilenAntwort {
 
 
 /**
- * Für Verwendung HttpClient muss in app.module.ts die Methode provideHttpClient() als Provider
- * registriert werden (siehe src/app/app.module.ts).
+ * Für Verwendung HttpClient muss in der Datei "app.module.ts" die Methode provideHttpClient() 
+ * als Provider registriert werden.
  */
 @Component({
   selector: 'app-home',
