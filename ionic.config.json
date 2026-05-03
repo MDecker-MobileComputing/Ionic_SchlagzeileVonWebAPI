@@ -1,0 +1,7 @@
+{
+  "name": "Schlagzeile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
