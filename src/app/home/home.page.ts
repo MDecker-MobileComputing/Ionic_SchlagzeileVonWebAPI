@@ -28,7 +28,7 @@ interface SchlagzeilenAntwort {
 })
 export class HomePage {
 
-    /** Objektvariable für Two-Way-Binding. */
+    /** Objektvariable für Interpolation. */
     public schlagzeile: string = "Noch keine Schlagzeile geladen.";
 
     /** URL für Abruf einer Schlagzeile von Web-API. 
