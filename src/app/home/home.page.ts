@@ -28,7 +28,8 @@ interface SchlagzeilenAntwort {
 })
 export class HomePage {
 
-  public schlagzeile: string = "Noch keine Schlagzeile geladen.";
+    /** Objektvariable für Two-Way-Binding. */
+    public schlagzeile: string = "Noch keine Schlagzeile geladen.";
 
     /** URL für Abruf einer Schlagzeile von Web-API. 
      * Doku: https://api.el-decker.de/badnews_doku.html 
