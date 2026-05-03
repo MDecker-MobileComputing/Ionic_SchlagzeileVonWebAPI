@@ -28,6 +28,8 @@ interface SchlagzeilenAntwort {
 })
 export class HomePage {
 
+  public schlagzeile: string = "Noch keine Schlagzeile geladen.";
+
     /** URL für Abruf einer Schlagzeile von Web-API. 
      * Doku: https://api.el-decker.de/badnews_doku.html 
      *
@@ -75,17 +77,23 @@ export class HomePage {
      * 
      * @param schlagzeilenAntwort Response-Body der Web-API, der die Schlagzeile enthält.
      */
-    private verarbeiteHttpResponse( schlagzeilenAntwort: SchlagzeilenAntwort ) {
+    private async verarbeiteHttpResponse( schlagzeilenAntwort: SchlagzeilenAntwort ) {
 
       console.log( "HTTP-Response erhalten:", schlagzeilenAntwort ) ;
 
-      // get Schlagzeilen-Item aus Schlagzeilen-Antwort
       const schlagzeilenItem = schlagzeilenAntwort.items[0];
       
       if ( schlagzeilenItem == null ) {
-        console.warn( "Keine Schlagzeilen-Item erhalten." );
+
+        await this.zeigeFehlerAlert( "Keine Schlagzeile in der Antwort erhalten." );
         return;
       }
+
+      const schlagzeile = schlagzeilenItem.schlagzeile;
+
+      this.schlagzeile = schlagzeile;
+      
+      console.log( "Schlagzeile:", schlagzeile ) ;
     }
 
 
@@ -98,9 +106,20 @@ export class HomePage {
 
         console.error( "Fehler bei HTTP-Request:", fehler ) ;
 
+        await this.zeigeFehlerAlert( fehler.message );
+    }
+
+
+    /**
+     * Hilfsmethode zum Anzeigen eines Alert-Dialogs mit Fehlermeldung.
+     * 
+     * @param fehlermeldung Text der Fehlermeldung
+     */
+    private async zeigeFehlerAlert( fehlermeldung: string ) {
+      
         const alert = await this.alertCtrl.create({
             header: "Fehler",
-            message: "Beim Abruf der Schlagzeile ist ein Fehler aufgetreten: " + fehler.message,
+            message: fehlermeldung,
             buttons: ["OK"]
           });
 

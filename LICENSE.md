@@ -1,6 +1,6 @@
 BSD 3-Clause License
 
-Copyright (c) 2021, MDecker-MobileComputing
+Copyright (c) 2026, MDecker-MobileComputing
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

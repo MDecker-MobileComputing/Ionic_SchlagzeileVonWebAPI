@@ -3,6 +3,11 @@
 <br>
 
 Diese Repository enthält eine Ionic/Angular-App, die demonstriert, wie man Daten von einer REST-API abruft.
+Es wird jeweils eine zufällig erzeugte Schlagzeile von einer REST-API abgerufen und angezeigt.
+
+<br>
+
+![Screenshot](screenshot_1.png)
 
 <br>
 

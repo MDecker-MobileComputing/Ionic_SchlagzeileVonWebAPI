@@ -1,17 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Schlagzeile</ion-title>
+    <ion-title>Schlagzeile von Web-API</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-text color="dark">
+    <h1 class="schlagzeile">{{ schlagzeile }}</h1>
+  </ion-text>
 
-    &nbsp;
+  &nbsp;
 
-    <ion-button expand="block" (click)="onSchlagzeileLadenButton()" >Schlagzeile laden</ion-button>
+  <ion-button expand="block" (click)="onSchlagzeileLadenButton()" >Schlagzeile laden</ion-button>
 
-    &nbsp;
-
+  &nbsp;
 
 </ion-content>
