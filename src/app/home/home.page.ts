@@ -4,6 +4,7 @@ import { AlertController } from '@ionic/angular';
 
 
 interface SchlagzeilenItem {
+
   schlagzeile: string;
   inland     : boolean;
   ort        : string;
@@ -11,14 +12,15 @@ interface SchlagzeilenItem {
 
 
 interface SchlagzeilenAntwort {
+
   items: SchlagzeilenItem[];
   anzahl: number;
 }
 
 
 /**
- * Für Verwendung HttpClient muss in der Datei "app.module.ts" die Methode provideHttpClient() 
- * als Provider registriert werden.
+ * Für Verwendung HttpClient muss in der Datei "app.module.ts" die Methode
+ * `provideHttpClient()` als Provider registriert werden.
  */
 @Component({
   selector: 'app-home',
@@ -28,14 +30,14 @@ interface SchlagzeilenAntwort {
 })
 export class HomePage {
 
-    /** Objektvariable für Interpolation. */
+    /** Objektvariable für Interpolation: enthält angezeigte Schlagzeile */
     public schlagzeile: string = "Noch keine Schlagzeile geladen.";
 
-    /** URL für Abruf einer Schlagzeile von Web-API. 
-     * Doku: https://api.el-decker.de/badnews_doku.html 
+    /** URL für Abruf einer Schlagzeile von Web-API.
+     * Doku: https://api.el-decker.de/badnews_doku.html
      *
      * Beispiel für JSON-Antwort der Web-API:
-     * ``` 
+     * ```
      * {
      *   "items": [
      *     {
@@ -63,9 +65,9 @@ export class HomePage {
      */
     public onSchlagzeileLadenButton() {
 
-        const httpRequestObservable = 
+        const httpRequestObservable =
           this.httpClient.get<SchlagzeilenAntwort>( this.URL_WEBAPI );
-        
+
         httpRequestObservable.subscribe({
             next : (antwort) => this.verarbeiteHttpResponse( antwort ),
             error: (fehler ) => this.verarbeiteHttpFehler(   fehler  )
@@ -75,7 +77,7 @@ export class HomePage {
 
     /**
      * Event-Handler für erfolgreiche HTTP-Response.
-     * 
+     *
      * @param schlagzeilenAntwort Response-Body der Web-API, der die Schlagzeile enthält.
      */
     private async verarbeiteHttpResponse( schlagzeilenAntwort: SchlagzeilenAntwort ) {
@@ -83,25 +85,21 @@ export class HomePage {
       console.log( "HTTP-Response erhalten:", schlagzeilenAntwort ) ;
 
       const schlagzeilenItem = schlagzeilenAntwort.items[0];
-      
+
       if ( schlagzeilenItem == null ) {
 
         await this.zeigeFehlerAlert( "Keine Schlagzeile in der Antwort erhalten." );
         return;
       }
 
-      const schlagzeile = schlagzeilenItem.schlagzeile;
-
-      this.schlagzeile = schlagzeile;
-      
-      console.log( "Schlagzeile:", schlagzeile ) ;
+      this.schlagzeile = schlagzeilenItem.schlagzeile;
     }
 
 
     /**
      * Event-Handler für Fehler bei HTTP-Request.
-     * 
-     * @param fehler Objekt mit Informationen zum Fehler 
+     *
+     * @param fehler Objekt mit Informationen zum Fehler
      */
     private async verarbeiteHttpFehler( fehler: HttpErrorResponse ) {
 
@@ -113,11 +111,11 @@ export class HomePage {
 
     /**
      * Hilfsmethode zum Anzeigen eines Alert-Dialogs mit Fehlermeldung.
-     * 
+     *
      * @param fehlermeldung Text der Fehlermeldung
      */
     private async zeigeFehlerAlert( fehlermeldung: string ) {
-      
+
         const alert = await this.alertCtrl.create({
             header: "Fehler",
             message: fehlermeldung,
