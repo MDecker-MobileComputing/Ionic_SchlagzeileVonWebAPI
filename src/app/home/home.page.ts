@@ -67,6 +67,8 @@ export class HomePage {
 
         const httpRequestObservable =
           this.httpClient.get<SchlagzeilenAntwort>( this.URL_WEBAPI );
+        // wenn noch HTTP-Header setzt werden soll:
+        // https://gist.github.com/MDecker-MobileComputing/dbc5de33be006a96bd7892726c0be482
 
         httpRequestObservable.subscribe({
             next : (antwort) => this.verarbeiteHttpResponse( antwort ),
