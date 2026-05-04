@@ -7,6 +7,12 @@ Es wird jeweils eine zufällig erzeugte Schlagzeile von einer REST-API abgerufen
 
 <br>
 
+----
+
+## Screenshot ##
+
+<br>
+
 ![Screenshot](screenshot_1.png)
 
 <br>
